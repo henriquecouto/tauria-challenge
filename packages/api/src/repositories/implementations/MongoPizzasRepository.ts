@@ -18,6 +18,11 @@ export class MongoPizzasRepository implements IPizzasRepository {
   }
 
   async create(data: Pizza): Promise<void> {
-    this.db.collection("pizzas").insertOne(data);
+    await this.db.collection("pizzas").insertOne(data);
+  }
+
+  async loadAll(): Promise<Pizza[]> {
+    const pizzas = await this.db.collection("pizzas").find().toArray();
+    return pizzas;
   }
 }
