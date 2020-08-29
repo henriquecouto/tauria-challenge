@@ -14,7 +14,9 @@ export class MongoPizzasRepository implements IPizzasRepository {
   }
 
   async findByName(name: string): Promise<Pizza> {
-    return await this.db.collection("pizzas").findOne({ name });
+    return await this.db
+      .collection("pizzas")
+      .findOne({ name: { $regex: name, $options: "i" } });
   }
 
   async create(data: Pizza): Promise<void> {
