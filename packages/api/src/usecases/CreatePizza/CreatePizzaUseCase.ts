@@ -2,6 +2,7 @@ import { IPizzasRepository } from "../../repositories/IPizzasRepository";
 import { ICreatePizzaRequestDTO } from "./CreatePizzaDTO";
 import { Pizza } from "../../entities/Pizza";
 import pizzaOptions from "../../config/options.json";
+import { hasArrayDuplicates } from "../../helpers/hasArrayDuplicates";
 
 export class CreatePizzaUseCase {
   constructor(private pizzasRepository: IPizzasRepository) {}
@@ -30,11 +31,20 @@ export class CreatePizzaUseCase {
       }
     }
 
+    if (hasArrayDuplicates(data.toppings)) {
+      throw new Error("You can't repeat ingredients!");
+    }
+
     if (pizzaNameAlreadyExists) {
       throw new Error("Pizza name already exists!");
     }
 
     const pizza = new Pizza(data);
+    pizza.price = Pizza.calculatePrice(
+      pizzaOptions.pizzaSizes[data.size],
+      pizzaOptions.pizzaCrustType[data.crustType],
+      data.toppings.length > 3 ? data.toppings.length - 3 : 0
+    );
 
     await this.pizzasRepository.create(pizza);
   }

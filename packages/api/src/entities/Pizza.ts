@@ -15,4 +15,9 @@ export class Pizza {
       this.id = v4();
     }
   }
+
+  static calculatePrice(sizePrice, crustPrice, extraToppings) {
+    let totalPrice = sizePrice + crustPrice + extraToppings * 0.5;
+    return totalPrice;
+  }
 }
