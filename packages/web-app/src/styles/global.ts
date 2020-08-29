@@ -9,7 +9,8 @@ export default createGlobalStyle`
     text-decoration: none;
   }
   body {
-    font-size: 50pt;
-    font-family: 'Bebas Neue'
+    font-size: 30pt;
+    font-family: 'Roboto';
+    background-color: ${props => props.theme.palette.white}
   }
 `;

@@ -2,6 +2,7 @@ import React from "react";
 import { IoMdPizza as Pizza } from "react-icons/io";
 import { Container, Title, Subtitle } from "./styles";
 
+
 const Header: React.FC = () => {
   return (
     <Container>

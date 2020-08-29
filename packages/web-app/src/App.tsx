@@ -7,12 +7,14 @@ import "./assets/fonts/BebasNeue/stylesheet.css";
 import "./assets/fonts/Roboto/stylesheet.css";
 
 import Header from "./components/Header";
+import SearchBar from "./components/SearchBar";
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Header />
       <GlobalStyle />
+      <Header />
+      <SearchBar />
       Hello Web App!
     </ThemeProvider>
   );
