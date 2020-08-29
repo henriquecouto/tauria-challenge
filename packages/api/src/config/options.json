@@ -1,0 +1,16 @@
+{
+  "pizzaSizes": { "small": 8, "medium": 10, "large": 12 },
+  "pizzaCrustType": { "thin": 2, "thick": 4 },
+  "pizzaToppings": {
+    "pepperoni": "pepperoni",
+    "mushrooms": "mushrooms",
+    "onions": "onions",
+    "sausage": "sausage",
+    "bacon": "bacon",
+    "extra cheese": "extra cheese",
+    "black olives": "black olives",
+    "green peppers": "green peppers",
+    "pineapple": "pineapple",
+    "spinach": "spinach"
+  }
+}

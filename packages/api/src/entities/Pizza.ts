@@ -5,7 +5,8 @@ export class Pizza {
 
   public size: string;
   public crustType: string;
-  public topping: string[];
+  public toppings: string[];
+  public price?: number;
 
   constructor(props: Omit<Pizza, "id">, id?: string) {
     Object.assign(this, props);

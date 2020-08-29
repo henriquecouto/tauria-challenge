@@ -5,10 +5,10 @@ export class CreatePizzaController {
   constructor(private createPizzaUseCase: CreatePizzaUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, size, crustType, topping } = request.body;
+    const { name, size, crustType, toppings } = request.body;
 
     try {
-      await this.createPizzaUseCase.run({ name, size, crustType, topping });
+      await this.createPizzaUseCase.run({ name, size, crustType, toppings });
       return response.status(201).json({ message: "Pizza created." });
     } catch (error) {
       return response
