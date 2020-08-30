@@ -1,10 +1,11 @@
 import { MongoClient, Db } from "mongodb";
+import mongodbConfig from "../../config/mongodb.json";
 
 import { IPizzasRepository } from "../IPizzasRepository";
 import { Pizza } from "../../entities/Pizza";
 
 export class MongoPizzasRepository implements IPizzasRepository {
-  private url = "mongodb://localhost:27018/pizza-creator";
+  private url = mongodbConfig.url;
   private db: Db;
 
   constructor() {
