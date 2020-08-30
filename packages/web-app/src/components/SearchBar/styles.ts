@@ -7,6 +7,11 @@ export const Container = styled.div`
   justify-content: center;
   height: 80px;
   background-color: ${(props) => props.theme.palette.primary};
+  @media only screen and (max-width: 700px) {
+    & {
+      padding: 10px 20px;
+    }
+  }
 `;
 
 export const Input = styled.input`
@@ -22,7 +27,13 @@ export const Input = styled.input`
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   &::placeholder {
-    color: ${props => props.theme.palette.white}aa
+    color: ${(props) => props.theme.palette.white}aa;
+  }
+
+  @media only screen and (max-width: 700px) {
+    & {
+      font-size: 16pt;
+    }
   }
 `;
 
@@ -45,7 +56,7 @@ export const Button = styled.button`
   cursor: pointer;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
-  color: ${props => props.theme.palette.white};
+  color: ${(props) => props.theme.palette.white};
   font-size: 36px;
   display: flex;
   align-items: center;

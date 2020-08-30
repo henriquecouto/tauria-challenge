@@ -10,11 +10,24 @@ export const Container = styled.header`
   justify-content: center;
   background-color: ${(props) => props.theme.palette.primary};
   color: ${(props) => props.theme.palette.white};
+
+  @media only screen and (max-width: 700px) {
+    & {
+      padding: 0 20px;
+    }
+  }
 `;
 
 export const Title = styled.span`
   font-size: 72pt;
   font-family: "Bebas Neue";
+  text-align: center;
+
+  @media only screen and (max-width: 700px) {
+    & {
+      font-size: 42pt;
+    }
+  }
 `;
 
 export const Subtitle = styled.span`
