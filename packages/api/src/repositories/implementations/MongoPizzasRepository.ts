@@ -13,10 +13,11 @@ export class MongoPizzasRepository implements IPizzasRepository {
     });
   }
 
-  async findByName(name: string): Promise<Pizza> {
+  async findByName(name: string): Promise<Pizza[]> {
     return await this.db
       .collection("pizzas")
-      .findOne({ name: { $regex: name, $options: "i" } });
+      .find({ name: { $regex: name, $options: "i" } })
+      .toArray();
   }
 
   async create(data: Pizza): Promise<void> {
