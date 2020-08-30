@@ -7,6 +7,16 @@ export const Container = styled.div`
   padding-bottom: 40px;
 `;
 
+export const Info = styled.div`
+  padding: 20px;
+  padding-bottom: 0;
+  font-family: "Bebas Neue";
+  font-size: 36pt;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+`;
+
 export const Form = styled.form`
   box-shadow: 1px 1px 11px -5px ${(props) => props.theme.palette.primary};
   border-radius: 30px;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Form,
@@ -8,6 +8,7 @@ import {
   Checkbox,
   CheckboxLabel,
   CheckboxItens,
+  Info,
 } from "./styles";
 import { usePizzas } from "../../contexts/pizza";
 
@@ -19,7 +20,22 @@ const CreatePizza: React.FC = () => {
   const [crustType, setCrustType] = useState("");
   const [toppings, setToppings] = useState(Array<string>());
 
-  console.log({ name, size, crustType, toppings });
+  const [price, setPrice] = useState("");
+
+  useEffect(() => {
+    const extraToppings = toppings.length > 3 ? toppings.length - 3 : 0;
+    const newPrice: number =
+      (options.pizzaSizesPrice[size] || 0) +
+      (options.pizzaCrustTypePrice[crustType] || 0) +
+      extraToppings * 0.5;
+
+    setPrice(
+      new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(newPrice)
+    );
+  }, [size, crustType, toppings]);
 
   const onChangeToppings = ({
     target: { name, checked },
@@ -34,6 +50,7 @@ const CreatePizza: React.FC = () => {
   return (
     <Container>
       <Form>
+        <Info>{price}</Info>
         <Label>
           Name:{" "}
           <Input

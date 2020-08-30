@@ -17,10 +17,10 @@ export interface IPizza {
 }
 
 export interface IOptions {
-  pizzaCrustTypePrice: object;
-  pizzaSizesPrice: object;
-  pizzaToppingLimit: object;
-  pizzaToppings: object;
+  pizzaCrustTypePrice: any;
+  pizzaSizesPrice: any;
+  pizzaToppingLimit: any;
+  pizzaToppings: any;
 }
 
 interface IPizzaContext {
