@@ -51,5 +51,6 @@ export class CreatePizzaUseCase {
     );
 
     await this.pizzasRepository.create(pizza);
+    return pizza;
   }
 }

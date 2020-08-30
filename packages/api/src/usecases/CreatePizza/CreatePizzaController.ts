@@ -8,8 +8,8 @@ export class CreatePizzaController {
     const { name, size, crustType, toppings } = request.body;
 
     try {
-      await this.createPizzaUseCase.run({ name, size, crustType, toppings });
-      return response.status(201).json({ message: "Pizza created." });
+      const pizza = await this.createPizzaUseCase.run({ name, size, crustType, toppings });
+      return response.status(201).json({ message: "Pizza created.", pizza });
     } catch (error) {
       return response
         .status(400)
