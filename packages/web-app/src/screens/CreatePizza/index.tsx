@@ -1,5 +1,14 @@
 import React from "react";
-import { Container, Form, Label, Input, Select } from "./styles";
+import {
+  Container,
+  Form,
+  Label,
+  Input,
+  Select,
+  Checkbox,
+  CheckboxLabel,
+  CheckboxItens,
+} from "./styles";
 import { usePizzas } from "../../contexts/pizza";
 
 const CreatePizza: React.FC = () => {
@@ -9,7 +18,7 @@ const CreatePizza: React.FC = () => {
     <Container>
       <Form>
         <Label>
-          Name: <Input />
+          Name: <Input placeholder="Insert a name for your pizza!" />
         </Label>
         <Label>
           Size:
@@ -27,6 +36,17 @@ const CreatePizza: React.FC = () => {
             ))}
           </Select>
         </Label>
+        <Checkbox>
+          Ingredients:
+          <CheckboxItens>
+            {Object.keys(options.pizzaToppings).map((topping) => (
+              <CheckboxLabel key={topping}>
+                <input type="checkbox" />
+                <span>{topping}</span>
+              </CheckboxLabel>
+            ))}
+          </CheckboxItens>
+        </Checkbox>
       </Form>
     </Container>
   );

@@ -4,6 +4,7 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  padding-bottom: 40px;
 `;
 
 export const Form = styled.form`
@@ -16,7 +17,7 @@ export const Form = styled.form`
   color: ${(props) => props.theme.palette.primary};
 `;
 
-export const Label = styled.div`
+export const Label = styled.label`
   margin: 20px;
   display: flex;
   flex-direction: column;
@@ -32,6 +33,10 @@ export const Input = styled.input`
   background-color: ${(props) => props.theme.palette.primary};
   color: ${(props) => props.theme.palette.white};
   margin-top: 5px;
+
+  &::placeholder {
+    color: ${(props) => props.theme.palette.white}88;
+  }
 `;
 
 export const Select = styled.select`
@@ -44,4 +49,24 @@ export const Select = styled.select`
   background-color: ${(props) => props.theme.palette.primary};
   color: ${(props) => props.theme.palette.white};
   margin-top: 5px;
+`;
+
+export const Checkbox = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+`;
+
+export const CheckboxLabel = styled(Label)`
+  margin: 0px;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 10px;
+  width: 30%;
+`;
+
+export const CheckboxItens = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 `;
