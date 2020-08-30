@@ -24,6 +24,10 @@ export class CreatePizzaUseCase {
       throw new Error("Invalid pizza crust type!");
     }
 
+    if (data.toppings.length > pizzaOptions.pizzaToppingLimit[data.size]) {
+      throw new Error("Ingredients limit reached!");
+    }
+
     for (let toppingIndex in data.toppings) {
       const topping = data.toppings[toppingIndex];
       if (!pizzaOptions.pizzaToppings[topping]) {
