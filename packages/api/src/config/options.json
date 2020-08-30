@@ -1,6 +1,6 @@
 {
-  "pizzaSizes": { "small": 8, "medium": 10, "large": 12 },
-  "pizzaCrustType": { "thin": 2, "thick": 4 },
+  "pizzaSizesPrice": { "small": 8, "medium": 10, "large": 12 },
+  "pizzaCrustTypePrice": { "thin": 2, "thick": 4 },
   "pizzaToppingLimit": { "small": 5, "medium": 7, "large": 9 },
   "pizzaToppings": {
     "pepperoni": "pepperoni",

@@ -16,11 +16,11 @@ export class CreatePizzaUseCase {
       throw new Error("All values must be filled!");
     }
 
-    if (!pizzaOptions.pizzaSizes[data.size]) {
+    if (!pizzaOptions.pizzaSizesPrice[data.size]) {
       throw new Error("Invalid pizza size!");
     }
 
-    if (!pizzaOptions.pizzaCrustType[data.crustType]) {
+    if (!pizzaOptions.pizzaCrustTypePrice[data.crustType]) {
       throw new Error("Invalid pizza crust type!");
     }
 
@@ -45,8 +45,8 @@ export class CreatePizzaUseCase {
 
     const pizza = new Pizza(data);
     pizza.price = Pizza.calculatePrice(
-      pizzaOptions.pizzaSizes[data.size],
-      pizzaOptions.pizzaCrustType[data.crustType],
+      pizzaOptions.pizzaSizesPrice[data.size],
+      pizzaOptions.pizzaCrustTypePrice[data.crustType],
       data.toppings.length > 3 ? data.toppings.length - 3 : 0
     );
 
