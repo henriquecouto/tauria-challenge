@@ -25,6 +25,8 @@ const CreatePizza: React.FC = () => {
 
   const [price, setPrice] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   const calculatePrice = useCallback(() => {
     const extraToppings = toppings.length > 3 ? toppings.length - 3 : 0;
     const newPrice: number =
@@ -60,6 +62,7 @@ const CreatePizza: React.FC = () => {
 
   const createPizza = async (e: FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     if (!(size && crustType && toppings.length && name)) {
       alert("All values must be filled!");
       return;
@@ -74,10 +77,27 @@ const CreatePizza: React.FC = () => {
       });
 
       addPizza(data.pizza);
+      alert("Congrats! You are created a new pizza flavor!");
+      setName("");
+      setSize("");
+      setCrustType("");
+      setToppings([]);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <Container>
+        <Form>
+          <Info>Creating your pizza flavor!</Info>
+        </Form>
+      </Container>
+    );
+  }
 
   return (
     <Container>
