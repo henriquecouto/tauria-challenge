@@ -16,8 +16,16 @@ export interface IPizza {
   price: number;
 }
 
+export interface IOptions {
+  pizzaCrustTypePrice: object;
+  pizzaSizesPrice: object;
+  pizzaToppingLimit: object;
+  pizzaToppings: object;
+}
+
 interface IPizzaContext {
   pizzas: IPizza[];
+  options: IOptions;
 }
 
 const PizzasContext = createContext({} as IPizzaContext);
@@ -28,6 +36,7 @@ export function usePizzas(): IPizzaContext {
 
 export const PizzasProvider: React.FC = ({ children }) => {
   const [pizzas, setPizzas] = useState([] as IPizza[]);
+  const [options, setOptions] = useState({} as IOptions);
 
   const loadPizzas = useCallback(async () => {
     try {
@@ -38,12 +47,29 @@ export const PizzasProvider: React.FC = ({ children }) => {
     }
   }, []);
 
+  const loadOptions = useCallback(async () => {
+    try {
+      const { data } = await PizzaAPI.get("/config");
+      setOptions(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   useEffect(() => {
     loadPizzas();
   }, [loadPizzas]);
 
+  useEffect(() => {
+    loadOptions();
+  }, [loadOptions]);
+
+  if (!options.pizzaSizesPrice) {
+    return <div />;
+  }
+
   return (
-    <PizzasContext.Provider value={{ pizzas }}>
+    <PizzasContext.Provider value={{ pizzas, options }}>
       {children}
     </PizzasContext.Provider>
   );
