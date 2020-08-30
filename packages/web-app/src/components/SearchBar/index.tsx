@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Input, InputContainer, Button } from "./styles";
 import { IoMdSearch as Search } from "react-icons/io";
 import { useTheme } from "styled-components";
+import { Redirect } from "react-router-dom";
 
 const SearchBar: React.FC = () => {
   const theme = useTheme();
+
+  const [search, setSearch] = useState("");
+  const [redirect, setRedirect] = useState(false);
+
+  const redirectToSearch = () => {
+    setRedirect(true);
+  };
+
+  useEffect(() => {
+    setRedirect(false);
+  }, [redirect]);
+
   return (
     <>
+      {redirect && <Redirect to={`/search/${search}`} />}
       <Container>
         <InputContainer>
-          <Input placeholder="Search pizzas by name" />
-          <Button>
+          <Input
+            placeholder="Search pizzas by name"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <Button onClick={redirectToSearch}>
             <Search />
           </Button>
         </InputContainer>

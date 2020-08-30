@@ -11,17 +11,18 @@ import SearchBar from "./components/SearchBar";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ListPizzas from "./screens/ListPizzas";
+import SearchPizza from "./screens/SearchPizza";
 import CreatePizza from "./screens/CreatePizza";
 import { PizzasProvider } from "./contexts/pizza";
 
 const App: React.FC = () => {
   return (
-    <PizzasProvider>
-      <ThemeProvider theme={defaultTheme}>
-        <GlobalStyle />
-        <Header />
-        <SearchBar />
-        <Router>
+    <Router>
+      <PizzasProvider>
+        <ThemeProvider theme={defaultTheme}>
+          <GlobalStyle />
+          <Header />
+          <SearchBar />
           <Switch>
             <Route exact path="/">
               <ListPizzas />
@@ -29,10 +30,13 @@ const App: React.FC = () => {
             <Route exact path="/create">
               <CreatePizza />
             </Route>
+            <Route path="/search/:name">
+              <SearchPizza />
+            </Route>
           </Switch>
-        </Router>
-      </ThemeProvider>
-    </PizzasProvider>
+        </ThemeProvider>
+      </PizzasProvider>
+    </Router>
   );
 };
 
