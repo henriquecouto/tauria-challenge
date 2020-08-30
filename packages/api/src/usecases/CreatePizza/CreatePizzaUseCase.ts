@@ -8,9 +8,9 @@ export class CreatePizzaUseCase {
   constructor(private pizzasRepository: IPizzasRepository) {}
 
   async run(data: ICreatePizzaRequestDTO) {
-    const pizzaNameAlreadyExists = await this.pizzasRepository.findByName(
-      data.name
-    );
+    const pizzaNameAlreadyExists = (
+      await this.pizzasRepository.findByName(data.name)
+    ).length;
 
     if (!data.name || !data.size || !data.toppings || !data.crustType) {
       throw new Error("All values must be filled!");
