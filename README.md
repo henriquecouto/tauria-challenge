@@ -20,3 +20,9 @@ To Start Application:
 To Visit App:
 
 `localhost:3000` 
+
+Versions:
+
+  - Node: `12.18.3`
+  - Yarn: `1.22.5`
+  - Lerna: `3.22.1`
