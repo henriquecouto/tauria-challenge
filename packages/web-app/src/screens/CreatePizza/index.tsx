@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FormEvent, useCallback } from "react";
 import {
   Container,
   Form,
@@ -13,9 +13,10 @@ import {
   Button,
 } from "./styles";
 import { usePizzas } from "../../contexts/pizza";
+import { PizzaAPI } from "../../api";
 
 const CreatePizza: React.FC = () => {
-  const { options } = usePizzas();
+  const { options, addPizza } = usePizzas();
 
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
@@ -24,7 +25,7 @@ const CreatePizza: React.FC = () => {
 
   const [price, setPrice] = useState("");
 
-  const calculatePrice = () => {
+  const calculatePrice = useCallback(() => {
     const extraToppings = toppings.length > 3 ? toppings.length - 3 : 0;
     const newPrice: number =
       (options.pizzaSizesPrice[size] || 0) +
@@ -37,37 +38,55 @@ const CreatePizza: React.FC = () => {
         currency: "USD",
       }).format(newPrice)
     );
-  };
+  }, [size, crustType, toppings, options]);
 
   useEffect(() => {
     calculatePrice();
-  }, [size, crustType, toppings]);
+  }, [calculatePrice]);
 
   useEffect(() => {
-    setToppings([])
-  }, [size])
+    setToppings([]);
+  }, [size]);
 
   const onChangeToppings = ({
     target: { name, checked },
   }: React.ChangeEvent<HTMLInputElement>) => {
-    if (
-      checked &&
-      toppings.length < options.pizzaToppingLimit[size]
-    ) {
+    if (checked && toppings.length < options.pizzaToppingLimit[size]) {
       setToppings((old) => [...old, name]);
     } else {
       setToppings((old) => old.filter((topping) => topping !== name));
     }
   };
 
+  const createPizza = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!(size && crustType && toppings.length && name)) {
+      alert("All values must be filled!");
+      return;
+    }
+
+    try {
+      const { data } = await PizzaAPI.post("/pizzas", {
+        name,
+        size,
+        crustType,
+        toppings,
+      });
+
+      addPizza(data.pizza);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Container>
-      <Form>
+      <Form onSubmit={createPizza}>
         <Info>
           <span>Create your pizza!</span>
           <InfoAction>
             {price}
-            <Button>Create</Button>
+            <Button type="submit">Create</Button>
           </InfoAction>
         </Info>
         <Label>

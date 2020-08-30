@@ -24,7 +24,7 @@ export const InfoAction = styled.div`
   align-items: center;
 `;
 
-export const Button = styled.div`
+export const Button = styled.button`
   display: flex;
   align-items: center;
   border: none;
@@ -33,6 +33,7 @@ export const Button = styled.div`
   background-color: ${(props) => props.theme.palette.primary};
   color: ${(props) => props.theme.palette.white};
   padding: 10px;
+  font-family: "Bebas Neue";
   font-size: 18pt;
   margin-left: 20px;
 `;

@@ -26,6 +26,7 @@ export interface IOptions {
 interface IPizzaContext {
   pizzas: IPizza[];
   options: IOptions;
+  addPizza: (pizza: IPizza) => void;
 }
 
 const PizzasContext = createContext({} as IPizzaContext);
@@ -68,8 +69,12 @@ export const PizzasProvider: React.FC = ({ children }) => {
     return <div />;
   }
 
+  const addPizza = (pizza: IPizza) => {
+    setPizzas((old) => [...old, pizza]);
+  };
+
   return (
-    <PizzasContext.Provider value={{ pizzas, options }}>
+    <PizzasContext.Provider value={{ pizzas, options, addPizza }}>
       {children}
     </PizzasContext.Provider>
   );
