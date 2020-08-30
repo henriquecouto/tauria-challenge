@@ -14,7 +14,27 @@ export const Info = styled.div`
   font-size: 36pt;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const InfoAction = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const Button = styled.div`
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: ${(props) => props.theme.palette.primary};
+  color: ${(props) => props.theme.palette.white};
+  padding: 10px;
+  font-size: 18pt;
+  margin-left: 20px;
 `;
 
 export const Form = styled.form`
