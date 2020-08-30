@@ -43,10 +43,17 @@ const CreatePizza: React.FC = () => {
     calculatePrice();
   }, [size, crustType, toppings]);
 
+  useEffect(() => {
+    setToppings([])
+  }, [size])
+
   const onChangeToppings = ({
     target: { name, checked },
   }: React.ChangeEvent<HTMLInputElement>) => {
-    if (checked) {
+    if (
+      checked &&
+      toppings.length < options.pizzaToppingLimit[size]
+    ) {
       setToppings((old) => [...old, name]);
     } else {
       setToppings((old) => old.filter((topping) => topping !== name));
@@ -104,6 +111,7 @@ const CreatePizza: React.FC = () => {
                   type="checkbox"
                   name={topping}
                   onChange={onChangeToppings}
+                  checked={toppings.includes(topping)}
                 />
                 <span>{topping}</span>
               </CheckboxLabel>
