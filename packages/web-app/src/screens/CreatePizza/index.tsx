@@ -16,10 +16,10 @@ const CreatePizza: React.FC = () => {
 
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
-  const [crust, setCrust] = useState("");
+  const [crustType, setCrustType] = useState("");
   const [toppings, setToppings] = useState(Array<string>());
 
-  console.log({ name, size, crust, toppings });
+  console.log({ name, size, crustType, toppings });
 
   const onChangeToppings = ({
     target: { name, checked },
@@ -57,8 +57,8 @@ const CreatePizza: React.FC = () => {
         <Label>
           Crust:
           <Select
-            value={crust}
-            onChange={(event) => setCrust(event.target.value)}
+            value={crustType}
+            onChange={(event) => setCrustType(event.target.value)}
           >
             <option value="">select</option>
             {Object.keys(options.pizzaCrustTypePrice).map((size) => (
